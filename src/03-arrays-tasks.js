@@ -35,12 +35,13 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(len) {
-  if (len === 0) {
+function generateOdds(/* len */) {
+  throw new Error('Not implemented');
+  /* if (len === 0) {
     return [];
   }
   const arr = new Array(len);
-  return arr.map((item, index) => index * 2 + 1);
+  return arr.map((item, index) => index * 2 + 1); */
 }
 
 
@@ -149,8 +150,8 @@ function getStringsLength(arr) {
  *    [ 1, 3, 4, 5 ], 2, 1  => [ 1, 2, 3, 4, 5 ]
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  throw new Error('Not implemented');
+function insertItem(arr, item, index) {
+  return arr.splice(index, 0, item);
 }
 
 /**
@@ -205,8 +206,8 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  return arr.reduce((acc, current) => `${acc}\n${current.join(',')}`);
 }
 
 /**
@@ -220,8 +221,8 @@ function toCsvText(/* arr */) {
  *   [ 0, 1, 2, 3, 4, 5 ] => [ 0, 1, 4, 9, 16, 25 ]
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
-function toArrayOfSquares(/* arr */) {
-  throw new Error('Not implemented');
+function toArrayOfSquares(arr) {
+  return arr.map((item) => item * item);
 }
 
 
@@ -241,6 +242,8 @@ function toArrayOfSquares(/* arr */) {
  */
 function getMovingSum(/* arr */) {
   throw new Error('Not implemented');
+  /* return arr.map((index, item) => item + (arr[index - 1] || 0));
+*/
 }
 
 /**
@@ -558,6 +561,9 @@ function selectMany(/* arr, childrenSelector */) {
  */
 function getElementByIndexes(/* arr, indexes */) {
   throw new Error('Not implemented');
+  /* return arr[indexes[0]][indexes[1]];
+  const temp = indexes.reduce((acc, cur) => `${acc}[${cur}]`, '');
+  return arr`${temp}`; */
 }
 
 
@@ -584,9 +590,9 @@ function swapHeadAndTail(arr) {
     return arr;
   }
   const middle = Math.trunc(arr.length / 2);
-  const result = [...arr.slice(middle), ...arr.slice(-middle)];
+  const result = [...arr.slice(-middle), ...arr.slice(0, middle)];
   if (arr.length % 2 !== 0) {
-    result.splice(middle + 1, 0, arr[middle + 1]);
+    result.splice(middle, 0, arr[middle]);
   }
   return result;
 }
